@@ -32,11 +32,11 @@ header {
 }
 
 main {
-  width: 50vw;
+  width: 800px;
   margin: 0 auto 40px;
   padding: 30px;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   gap: 40px;
   background-color: var(--primary-dark);
   color: #EcEdEe;
@@ -48,12 +48,14 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  gap: 1.8em;
   width: 200px;
+  font-size: 0.85em;
+  line-height: 0.85em;
+  font-weight: 500;
 }
 
 .colorDiv {
-  width: 180px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -64,23 +66,21 @@ main {
   visibility: hidden;
 }
 
-.colorLabel, .button {
-  font-size: 0.85em;
-  font-weight: 600;
-}
-
 button, #colorBtn {
-  height: 40px;
+  height: 2.9em;
   border-radius: 3px;
 }
 
 #colorBtn {
-  width: 60px;
+  width: 3.6em;
   background-color: #222;
 }
 
+button, .colorDiv, input[type='range'] {
+  width: 12em;
+}
+
 button {
-  width: 180px;
   color: white;
   padding: 10px 0px;
   border: none;
@@ -106,8 +106,8 @@ button:active {
 }
 
 input[type='color'] {
-  width: 80px;
-  height: 80px;
+  width: 40px;
+  height: 40px;
   border: none;
 }
 
@@ -121,15 +121,18 @@ input[type='color']::-webkit-color-swatch {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
+#sizeWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8em;
+}
+
 input[type='range'] {
-  width: 180px;
-  margin-top: 8px;
   accent-color: var(--accent);
 }
 
 .size-value {
-  margin-top: -10px;
-  font-size: 16px;
+  font-size: 1em;
 }
 
 #gridLinesBtn {
@@ -163,7 +166,7 @@ footer {
   gap: 10px;
   width: 100%;
   padding: 25px;
-  font-size: 14px;
+  font-size: 0.85em;
 }
 
 .fa-github {
@@ -174,4 +177,87 @@ footer {
   
 .fa-github:hover {
   transform: rotate(360deg) scale(1.2);
+}
+
+/* Small screens ----------- */
+@media only screen
+and (max-width : 815px) {
+  body {
+    font-size: 10px;
+  }
+  main {
+    width: 400px;
+    margin: 0 auto 20px;
+    padding: 15px;
+    gap: 20px;
+  }
+  .grid {
+    width: 250px;
+    height: 250px;
+    padding: 10px;
+}
+
+  button, .colorDiv, input[type='range'] {
+    font-size: 0.85em;
+    line-height: 0.4em;
+  }
+  .controls {
+    width: 80px;
+    font-size: 0.85em;
+    gap: 10px;
+  }
+
+  #sizeWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  input[type='range'] {
+    height: 1em;
+    margin-bottom: 12px;
+  }
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen
+and (max-width : 320px) {
+  body {
+    font-size: 10px;
+  }
+  main {
+    width: 320px;
+    margin: 0 auto 20px;
+    padding: 15px;
+    gap: 20px;
+    flex-direction: column;
+    align-items: center;
+  }
+  .grid {
+    width: 250px;
+    height: 250px;
+    padding: 10px;
+}
+
+  button, .colorDiv, input[type='range'] {
+    font-size: 0.85em;
+    line-height: 0.4em;
+  }
+  .controls {
+    width: 320px;
+    font-size: 0.85em;
+    gap: 10px;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  #sizeWrapper {
+    margin-top: 10px;
+  }
+
+  input[type='range'] {
+    height: 1em;
+    margin-bottom: 12px;
+  }
 }
