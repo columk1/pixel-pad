@@ -16,7 +16,7 @@ const clearBtn = document.getElementById('clearBtn');
 const drawBtn = document.getElementById("drawBtn");
 const colorPicker = document.getElementById('colorPicker');
 const eraserBtn = document.getElementById('eraserBtn');
-const sizeSlider = document.getElementById('sizeSlider');
+const slider = document.getElementById('sizeSlider');
 const sizeValue = document.getElementById('sizeValue');
 const gridLinesBtn = document.getElementById('gridLinesBtn');
 const grid = document.getElementById('grid');
@@ -36,9 +36,12 @@ eraserBtn.onclick = () => setCurrentMode('eraser');
 
 gridLinesBtn.onclick = () => toggleGridLines();
 
+
+/*
 sizeSlider.onmousemove = (e) => {
     mouseDown ? changeSize(e.target.value) : e;
 }
+*/
 
 // Toggle active class and disable mode button until another is clicked
 function activateButton(mode) {
@@ -117,6 +120,42 @@ function updateSizeValue(value) {
     sizeValue.textContent = `${value} x ${value}`;
 }
 
+// Create touch compatible range slider using module
+rangeSlider.create(slider, {
+    polyfill: true,   // Boolean, if true, custom markup will be created
+    rangeClass: 'rangeSlider',
+    disabledClass: 'rangeSlider--disabled',
+    fillClass: 'rangeSlider__fill',
+    bufferClass: 'rangeSlider__buffer',
+    handleClass: 'rangeSlider__handle',
+    startEvent: ['mousedown', 'touchstart', 'pointerdown'],
+    moveEvent: ['mousemove', 'touchmove', 'pointermove'],
+    endEvent: ['mouseup', 'touchend', 'pointerup'],
+    min: 8,      // Number , 0
+    max: 32,      // Number, 100
+    step: 2,     // Number, 1
+    value: 16,    // Number, center of slider
+    buffer: null,     // Number, in percent, 0 by default
+    stick: 1,       // [Number stickTo, Number stickRadius]
+    borderRadius: 10,  // Number, if you use buffer + border-radius in css for looks good,
+    onInit: function () {
+    },
+    onSlideStart: function (position, value) {
+    },
+    onSlide: function (position, value) {
+        changeSize(position);
+    },
+    onSlideEnd: function (position, value) {
+    }
+  });
+  // then...
+  var giveMeSomeEvents = true; // or false
+  //slider.rangeSlider.update({min : 0, max : 20, step : 0.5, value : 1.5, buffer : 70}, giveMeSomeEvents);
+  // or
+  slider.rangeSlider.onSlideStart( function (position, value) {
+    console.error('anotherCallback', 'position: ' + position, 'value: ' + value);
+  });
+  
 
 window.onload = () => {
     setUpGrid(DEFAULT_SIZE);

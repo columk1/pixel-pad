@@ -28,7 +28,7 @@ body {
 }
 
 header {
-  margin-top: 80px;
+  margin-top: 60px;
 }
 
 main {
@@ -215,6 +215,9 @@ and (max-width : 815px) {
   input[type='range'] {
     height: 1em;
     margin-bottom: 12px;
+  }
+  #sizeValue {
+    margin-top: 8px;;
   }
 }
 
