@@ -38,6 +38,8 @@ gridLinesBtn.onclick = () => toggleGridLines();
 
 
 /*
+Initial slider function didn't work with touchscreens
+
 sizeSlider.onmousemove = (e) => {
     mouseDown ? changeSize(e.target.value) : e;
 }
@@ -120,8 +122,8 @@ function updateSizeValue(value) {
     sizeValue.textContent = `${value} x ${value}`;
 }
 
-// Create touch compatible range slider using module
-rangeSlider.create(slider, {
+// Initialize touch enabled slider from library to replace range input
+    rangeSlider.create(slider, {
     polyfill: true,   // Boolean, if true, custom markup will be created
     rangeClass: 'rangeSlider',
     disabledClass: 'rangeSlider--disabled',
@@ -151,11 +153,8 @@ rangeSlider.create(slider, {
   // then...
   var giveMeSomeEvents = true; // or false
   //slider.rangeSlider.update({min : 0, max : 20, step : 0.5, value : 1.5, buffer : 70}, giveMeSomeEvents);
-  // or
   slider.rangeSlider.onSlideStart( function (position, value) {
-    console.error('anotherCallback', 'position: ' + position, 'value: ' + value);
   });
-  
 
 window.onload = () => {
     setUpGrid(DEFAULT_SIZE);
